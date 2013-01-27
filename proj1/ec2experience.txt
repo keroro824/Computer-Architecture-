@@ -1,0 +1,102 @@
+Beidi Chen
+cs61c-bq
+
+1.On the big dataset, what were the top 20 words by relevance for each of these n-grams, and funcNum pairs: ("jurisdiction", 0), ("court order", 1) ("in my opinion", 2)?
+("jurisdiction", 0)
+2.8852518461248065	maclay
+0.9091565569902544	judge
+0.8552883307612996	casino
+0.6629844800719538	viders
+0.5682724114902461	lsuc
+0.5566711137666123	_land_
+0.40736194946396326	sovereignty
+0.39339539961966885	allegiance
+0.24853182143388883	namo
+0.2474365956349238	person
+0.22341887017385448	mexico
+0.2220164346592863	subhierarchy
+0.20275409712428147	forfeiture
+0.19671416428558106	commemorations
+0.18039794246448185	exercising
+0.1763534067519808	and
+0.17180573884353792	property
+0.17024282874217464	supercedes
+0.1490169028665911	parental
+0.14618467996345894	pending
+
+("court order", 1)
+2.1302145834789528	workplaces of
+2.0060573730272		ummm again
+0.5366018664035026	videos as
+0.1844734824261999	understand lenin
+0.1275007063863467	you saying
+0.11982009727868811	you obeying
+0.11827402969746349	understandable
+0.11447506483274722	was severely
+0.03295868095391877	words the
+0.03058255624036558	usa and
+0.029241030394552774	was no
+0.019997776802545737	visitations the
+0.018755361650371893	you by
+0.017188882287258886	while i
+0.015249830562742124	was breaching
+0.012143923342750301	you like
+0.011626563732346714	you try
+0.007691452616363744	zach takes
+0.004087304058662942	vacation of
+0.002136747119038264	wishes adam
+
+("in my opinion", 2)
+3.22363904152081	yummy in my
+3.1790338612694398	your relics and
+2.4368420630007677	your hash browns
+1.4040136995896777	your proclamations of
+1.169680459743385	your opinion about
+0.9222611185504016	young adults in
+0.8118864165286358	you would fight
+0.24814616950310495	your spiritual
+0.13628753350947734	your points are
+0.08419446821687437	your mileage may
+0.08323187187435452	your old partner
+0.034183159798596124	your national guard
+0.016855537628947977	your addiction
+0.006332859816526974	your situation the
+0.00467504979598447	your assertion about
+0.0024956294482818843	you want the
+0.0010565704527864214	you were
+5.098234406588406E-4	you would need
+4.116023335361933E-4	your child s
+3.95125193934691E-4	your way
+
+
+2.How long did each run of program take on each number of instances? How many mappers, and how many reducers did you use?
+1) ("jurisdiction","0") for 5 instances: 43min 42sec; mappers:316, reducers:32.
+for 9 instances: 24min 19sec; mappers: 316, reducers:32
+2)("court order", "1") for 5 instances: 43min 34sec; mappers: 316, reducers:32.
+for 9 instances: 24min 19sec; mappers: 316, reducers:32
+3)("in my opinion", "2") for 5 instances: 1h 9min 6sec; mappers: 380, reducers: 33.
+for 9 instances: 36min 11sec; mappers: 316, reducers: 32.
+
+
+3.What was the median processing rate per GB (= 2^30 bytes) of input for the tests using 5 workers?  Using 9 workers?
+for 5 workers: 147.3 sec/GB
+for 9 workers: 82.1 sec/GB
+
+4.What percentage speedup did you get using 9 workers instead of 5? How well, in your opinion, does Hadoop parallelize your code?
+(43min42sec-24min19sec)/24min19sec = 80%
+(43min34sec-24min19sec)/24min19sec = 80%
+(1h19min6sec-36min11sec)/36min11sec = 91%
+rate: 84%
+In my opinion, it parallelize my code.
+
+
+5.What was the price per GB processed? (Recall that an extra-large instance costs $0.68 per hour, rounded up to the nearest hour.)
+Using about 3h for 5 instances: 3*5*0.68=$10.2  10.2/3/17.8 = 0.191$/GB
+for 9 instances: 2*9*0.68 = $12.24   12.24/3/17.8 = 0.229$/GB
+
+
+6.How many dollars in EC2 credits did you use to complete this project? (Please don't use ec2-usage, as it tends to return bogus costs. You should work out the math yourself.)
+Theocratically I used 12.24+10.2 = 22.44$, but actually I use 22.44+5*1*0.68+9*1*0.68 = 9.52 = 31.96 for disconnection or other failure.
+
+7.Extra credit: did you use a combiner? What does it do, specifically, in your implementation?
+I used a combiner. My combiner is for helping reducer process data. It deals with the data in the same documents in parallel before reducer dealing with the whole data of sequences of text.
